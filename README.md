@@ -8,7 +8,7 @@ composer require --dev vanengers/php-openapi-client-generator
 
 ### Usage
 ```
-OPENAPI=http://127.0.0.1:8000/docs.json NAMESPACE=VendorName\\PackageName\\Generated OUTPUT_DIR=../src/Generated ./bin/api-client-generator generate
+OPENAPI=http://127.0.0.1:8000/docs.json NAMESPACE=VendorName\\PackageName\\Generated OUTPUT_DIR=src/Generated ./bin/api-client-generator generate
 ```
 
 ##### Specify the openapi specifications JSON file
@@ -21,7 +21,7 @@ NAMESPACE=VendorName\\PackageName\\Generated
 ```
 ##### Specify the output directory for the generated classes
 ```
-OUTPUT_DIR=../src/Generated
+OUTPUT_DIR=src/Generated
 ```
 
 ### Run the generator
