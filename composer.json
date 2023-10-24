@@ -1,0 +1,53 @@
+{
+    "name": "vanengers/php-openapi-client-generator",
+    "description": "Generate a PHP client for an OPENAPI specification",
+    "type": "library",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "Vanengers\\PhpOpenapiClientGenerator\\": "src/",
+            "DoclerLabs\\ApiClientGenerator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "George van Engers",
+            "email": "vanengers@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-xml": "*",
+        "cebe/php-openapi": "^1.4",
+        "docler-labs/api-client-exception": "^1.0.1 || ^2.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "guzzlehttp/psr7": "^1.6",
+        "icecave/parity": "^3.0",
+        "nikic/php-parser": "^4.10",
+        "nyholm/psr7": "^1.3",
+        "pimple/pimple": "^3.3",
+        "psr/container": "^1.0",
+        "psr/http-client": "^1.0",
+        "psr/http-message": "^1.0",
+        "symfony/console": "^5.1",
+        "symfony/yaml": "^5.1",
+        "twig/twig": "^3.0",
+        "webmozart/assert": "^1.11",
+        "composer/composer": "^2.1",
+        "mikey179/vfsstream": "^1.6",
+        "php-coveralls/php-coveralls": "^2.2",
+        "phpstan/phpstan": "^0.12.32",
+        "phpunit/phpunit": "^9.5",
+        "roave/security-advisories": "dev-latest",
+        "symfony/filesystem": "^5.1"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "bin": [
+        "bin/api-client-generator"
+    ]
+}
