@@ -138,7 +138,6 @@ class GenerateCommand extends Command
         $originalFiles    = $this->fileFinder
             ->files()
             ->name('*.php')
-            ->notPath('Sample')
             ->in(Configuration::STATIC_PHP_FILE_DIRECTORY);
 
         $ss->text(sprintf('<info>Collected %d static PHP files.</info>', $originalFiles->count()));
@@ -147,9 +146,10 @@ class GenerateCommand extends Command
         $ss->progressStart($originalFiles->count());
         foreach ($originalFiles as $originalFile) {
             if (!in_array($originalFile->getBasename(), $blacklistedFiles, true)) {
+                $outputDir = $this->configuration->getOutputDirectory();
                 $destinationPath = sprintf(
                     '%s/%s',
-                    $this->configuration->getOutputDirectory(),
+                    $outputDir,
                     $originalFile->getRelativePathname()
                 );
 
@@ -160,14 +160,6 @@ class GenerateCommand extends Command
             }
 
             $ss->progressAdvance();
-        }
-
-        if (file_exists(Configuration::STATIC_PHP_FILE_DIRECTORY.'/Sample.php')) {
-            $this->staticPhpPrinter->copy(
-                $this->configuration->getOutputDirectory().'/SampleClient.php',
-                new SplFileInfo(Configuration::STATIC_PHP_FILE_DIRECTORY.'/Sample.php',
-                    Configuration::STATIC_PHP_FILE_DIRECTORY,'Sample.php')
-            );
         }
 
         $ss->progressFinish();
