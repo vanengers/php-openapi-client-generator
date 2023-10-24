@@ -10,20 +10,18 @@ use DoclerLabs\ApiClientGenerator\Input\Configuration;
 use DoclerLabs\ApiClientGenerator\Input\FileReader;
 use DoclerLabs\ApiClientGenerator\Input\Parser;
 use DoclerLabs\ApiClientGenerator\Input\Specification;
-use DoclerLabs\ApiClientGenerator\MetaTemplateFacade;
 use DoclerLabs\ApiClientGenerator\Output\Copy\Request\AuthenticationCredentials;
 use DoclerLabs\ApiClientGenerator\Output\Copy\Serializer\ContentType\FormUrlencodedContentTypeSerializer;
 use DoclerLabs\ApiClientGenerator\Output\Copy\Serializer\ContentType\JsonContentTypeSerializer;
 use DoclerLabs\ApiClientGenerator\Output\Copy\Serializer\ContentType\VdnApiJsonContentTypeSerializer;
 use DoclerLabs\ApiClientGenerator\Output\Copy\Serializer\ContentType\XmlContentTypeSerializer;
 use DoclerLabs\ApiClientGenerator\Output\DirectoryPrinter;
-use DoclerLabs\ApiClientGenerator\Output\Meta\MetaFileCollection;
-use DoclerLabs\ApiClientGenerator\Output\MetaFilePrinter;
 use DoclerLabs\ApiClientGenerator\Output\Php\PhpFileCollection;
 use DoclerLabs\ApiClientGenerator\Output\PhpFilePrinter;
 use DoclerLabs\ApiClientGenerator\Output\StaticPhpFileCopier;
 use DoclerLabs\ApiClientGenerator\Output\WarningFormatter;
 use ReflectionClass;
+use ReflectionException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -84,7 +82,7 @@ class GenerateCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->initWarningPrinting($input);
-        $specificationFilePath = $this->configuration->getSpecificationFilePath();//dirname(__FILE__).'/../../.php_cs.php';
+        $specificationFilePath = $this->configuration->getSpecificationFilePath();
 
         $specification = $this->parser->parse(
             $this->fileReader->read($specificationFilePath),
@@ -288,6 +286,7 @@ class GenerateCommand extends Command
 
     /**
      * @return string[]
+     * @throws ReflectionException
      */
     private function getBlacklistedFiles(Specification $specification): array
     {
