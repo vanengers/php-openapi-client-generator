@@ -3,7 +3,23 @@
 
 use DoclerLabs\ApiClientGenerator\Application;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$dirs = [
+    __DIR__ . '/../../../../../../autoload.php',
+    __DIR__ . '/../../../../../autoload.php',
+    __DIR__ . '/../../../../autoload.php',
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../../autoload.php',
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/vendor/autoload.php'
+];
+
+foreach ($dirs as $file) {
+    if (file_exists($file)) {
+        require_once $file;
+        break;
+    }
+}
+
 
 $application = new Application();
 
