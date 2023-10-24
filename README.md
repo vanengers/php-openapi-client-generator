@@ -41,3 +41,7 @@ public function login()
 ```
 callable $saveToken = fn (string $token) => saveInterally($token);
 ```
+
+### This would result in these generated classes
+
+![alt text](https://github.com/vanengers/php-openapi-client-generator/tree/main/img/dirs.png?raw=true)
