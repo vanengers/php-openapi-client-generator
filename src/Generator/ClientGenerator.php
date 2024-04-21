@@ -117,10 +117,12 @@ class ClientGenerator extends GeneratorAbstract
             ->getNode();
 
         if (strpos($operation->getName(), 'login') === false) {
-            $stmts[] = $this->builder->localMethodCall('init');
-            $stmts[] = $this->builder->methodCall($requestVar, 'setBearerToken',
-                $this->builder->args([$this->builder->localPropertyFetch('bearerToken')])
-            );
+            if (count($operation->getSecurity()) > 0) {
+                $stmts[] = $this->builder->localMethodCall('init');
+                $stmts[] = $this->builder->methodCall($requestVar, 'setBearerToken',
+                    $this->builder->args([$this->builder->localPropertyFetch('bearerToken')])
+                );
+            }
         }
 
         $responseStmt = $this->builder->localMethodCall('sendRequest', [$requestVar]);
